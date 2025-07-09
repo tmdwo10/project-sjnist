@@ -26,4 +26,9 @@ public class CommonController {
 		return "common/contact";
 	}
 	
+	@RequestMapping("/signUp")
+	public String signUp() {
+		return "common/signUp";
+	}
+	
 }
