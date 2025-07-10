@@ -1,10 +1,17 @@
 <!-- header.html -->
+<html xmlns:th="http://www.thymeleaf.org">
 <header style="text-align: right;">
 	<nav>
 		<a id="headerHome" href="/main" style="width: 60px;">홈</a>
-		<a id="headerSignUp" href="/signUp" style="width: 60px;">회원가입</a>
-		<a id="headerSignIn" href="/signIn" style="width: 60px;">로그인</a>
-		<a id="headerLogout" href="/logout" style="width: 60px;">로그아웃</a>
+		<span th:if="${session.loginUser == null}">
+			<a id="headerSignUp" href="/signUp" style="width: 60px;">회원가입</a>
+			<a id="headerSignIn" href="/login" style="width: 60px;">로그인</a>
+		</span>
+		
+		<span th:if="${session.loginUser != null}">
+			<a id="headerLogout" href="/logout" style="width: 60px;">로그아웃</a>
+		</span>
 	</nav>
 </header>
 <script src="/common/js/header.js"></script>
+</html>

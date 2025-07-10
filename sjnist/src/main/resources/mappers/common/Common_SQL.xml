@@ -5,8 +5,41 @@
 
 <mapper namespace="com.project.sjnist.common.mapper.CommonMapper">
 
-    <select id="selectTest" resultType="map">
-        SELECT * FROM TEST
+    <insert id="signUp" parameterType="map">
+        INSERT INTO MEMBER
+		(
+			   USER_ID
+			 , PASSWORD
+			 , NAME
+			 , EMAIL
+			 , PHONE
+			 , REG_DATE
+			 , STATUS
+			 , ROLE
+		)
+		VALUES
+		(
+			   #{id, jdbcType=VARCHAR}
+			 , #{password, jdbcType=VARCHAR}
+			 , #{name, jdbcType=VARCHAR}
+			 , #{email, jdbcType=VARCHAR}
+			 , #{phoneNumber, jdbcType=VARCHAR}
+			 , SYSDATE
+			 , 'A'
+			 , 'USER'
+		)
+    </insert>
+    
+    <select id="validateId" resultType="int" parameterType="map">
+    	SELECT COUNT(1)
+    	  FROM MEMBER
+    	 WHERE USER_ID = #{id, jdbcType=VARCHAR}
+    </select>
+    
+    <select id="login" resultType="string" parameterType="string">
+    	SELECT PASSWORD
+    	  FROM MEMBER
+    	 WHERE USER_ID = #{id, jdbcType=VARCHAR}
     </select>
 
 </mapper>

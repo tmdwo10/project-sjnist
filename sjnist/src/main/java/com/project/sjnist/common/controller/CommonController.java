@@ -3,6 +3,8 @@ package com.project.sjnist.common.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class CommonController {
 	
@@ -29,6 +31,17 @@ public class CommonController {
 	@RequestMapping("/signUp")
 	public String signUp() {
 		return "common/signUp";
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		return "common/login";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		if(session != null) session.invalidate();
+		return "common/main";
 	}
 	
 }
